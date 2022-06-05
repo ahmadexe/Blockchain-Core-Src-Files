@@ -19,18 +19,18 @@ int main(int argc, char const *argv[])
     int j = 2;
     char a = msgAc[0];
     char b = msgAc[1];
-    long long int x = (long long int)(a);
-    long long int y = (long long int)(b);
-    long long int z = x << y;
+    unsigned long long x = (unsigned long long)(a);
+    unsigned long long y = (unsigned long long)(b);
+    unsigned long long z = x << y;
     string numStr = to_string(z);
     cipherText = cipherText + numStr;
     while (j < msgAc.length())
     {
         char a = msgAc[i];
         char b = msgAc[j];
-        long long int x = (long long int)(a);
-        long long int y = (long long int)(b);
-        long long int z = x << y;
+        unsigned long long x = (unsigned long long)(a);
+        unsigned long long y = (unsigned long long)(b);
+        unsigned long long z = x << y;
         string numStr = to_string(z);
         numStr = "," + numStr;
         cipherText += numStr;
@@ -53,10 +53,7 @@ int main(int argc, char const *argv[])
     {
         string a = numberedKey[e];
         string b = numberedKey[q];
-        long long int x = atol(b.c_str()) >> atol(a.c_str());
-        cout << a << endl;
-        cout << b << endl;
-        cout << x << endl;
+        unsigned long long x = atol(b.c_str()) >> atol(a.c_str());
         deCipheredText += (char)x;
         e--;
         q--;
