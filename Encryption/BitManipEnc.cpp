@@ -21,7 +21,8 @@ int main(int argc, char const *argv[])
     char b = msgAc[1];
     unsigned long long x = (unsigned long long)(a);
     unsigned long long y = (unsigned long long)(b);
-    unsigned long long z = x << y;
+    unsigned long long z = x << (y % 61);
+    z = z % 61;
     string numStr = to_string(z);
     cipherText = cipherText + numStr;
     while (j < msgAc.length())
@@ -30,7 +31,9 @@ int main(int argc, char const *argv[])
         char b = msgAc[j];
         unsigned long long x = (unsigned long long)(a);
         unsigned long long y = (unsigned long long)(b);
+        y = y % 61;
         unsigned long long z = x << y;
+        z = z % 61;
         string numStr = to_string(z);
         numStr = "," + numStr;
         cipherText += numStr;
@@ -53,13 +56,16 @@ int main(int argc, char const *argv[])
     {
         string a = numberedKey[e];
         string b = numberedKey[q];
-        unsigned long long x = atol(b.c_str()) >> atol(a.c_str());
+        cout<<"a is "<<a<<" b is "<<b<<endl;
+        unsigned long long x = atol(b.c_str()) >> (atol(a.c_str()));
+        x = x % 61;
+        cout<<"x is "<<x<<endl;
         deCipheredText += (char)x;
         e--;
         q--;
     }
-
+ 
     cout << "Deciphered Text is " << deCipheredText << endl;
-
+ 
     return 0;
 }
