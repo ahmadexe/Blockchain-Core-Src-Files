@@ -8,43 +8,63 @@ using namespace std;
 // n = p*q
 // phi = (p-1)*(q-1)
 
-int gcd(int a, int b)
+unsigned long long int gcd(unsigned long long int a, unsigned long long int b)
 {
     if (b == 0)
         return a;
     return gcd(b, a % b);
 }
 
-int generate_e(int phi)
+unsigned long long int generate_e(unsigned long long int phi)
 {
-    int e = 2;
-    while (gcd(e, phi) != 1)
+    unsigned long long int e = 2;
+    int gcdv = 0;
+    while (gcdv != 1)
+    {
         e++;
+        gcdv = gcd(e, phi);
+    }
     return e;
 }
 
-int generate_d(int e, int phi) {
-    int d = 1;
+unsigned long long int generate_d(unsigned long long int e,unsigned long long int phi) {
+    unsigned long long int d = 1;
     while (1) {
-        int x = (e * d) % phi;
+        unsigned long long int x = (e * d) % phi;
         if (x == 1)
             return d;
         d++;
     }
 }
 
+int ModArth(long long int base, long long int exponent, long long int mod) {
+    if (mod == 1)
+        return 0;
+    int c = 1;
+    for (int i = 0; i < exponent; i++) {
+        c = (c * base) % mod;
+    }
+    return c;
+}
+
 int main(int argc, char const *argv[])
 {
-    // int p, q, n, phi, d;
-    // int e;
-    // string msg;
-    // cin>>p>>q;
-    // n = p*q;
-    // phi = (p-1)*(q-1);
+    unsigned long long int p, q, n, phi, d;
+    unsigned long long int e;
+    unsigned long long int msg;
 
-    int e = 3;
-    int phi = 9328;
-    cout<<generate_d(e, phi)<<endl;
+    p = 31;
+    q = 71;
+    n = p * q;
+    phi = (p - 1) * (q - 1);
+    e = generate_e(phi);
+    d = generate_d(e, phi);
+    msg = 126;
+    int c = ModArth(msg, e, n);
+    cout<<"C "<<c<<endl;
+    int m = ModArth(c, d, n);
+    cout<<"M "<<m<<endl;
+
 
     return 0;
 }
