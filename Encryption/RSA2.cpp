@@ -53,13 +53,13 @@ int main(int argc, char const *argv[])
     unsigned long long int e;
     unsigned long long int msg;
 
-    p = 31;
-    q = 71;
+    p = 71;
+    q = 211;
     n = p * q;
     phi = (p - 1) * (q - 1);
     e = generate_e(phi);
     d = generate_d(e, phi);
-    msg = 126;
+    msg = 5000;
     int c = ModArth(msg, e, n);
     cout<<"C "<<c<<endl;
     int m = ModArth(c, d, n);
