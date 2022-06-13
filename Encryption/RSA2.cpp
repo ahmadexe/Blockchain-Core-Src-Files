@@ -53,18 +53,34 @@ int main(int argc, char const *argv[])
     unsigned long long int e;
     unsigned long long int msg;
 
+    vector<long long int> v;
+
     p = 71;
     q = 211;
     n = p * q;
     phi = (p - 1) * (q - 1);
     e = generate_e(phi);
     d = generate_d(e, phi);
-    msg = 5000;
-    int c = ModArth(msg, e, n);
-    cout<<"C "<<c<<endl;
-    int m = ModArth(c, d, n);
-    cout<<"M "<<m<<endl;
+    // int c = ModArth(msg, e, n);
+    // int m = ModArth(c, d, n);
 
+    string s = "My name is Ahmad";
+    string cipherText = "";
+    for (int i = 0; i < s.size(); i++) {
+        char m = s[i];
+        int c = ModArth(m, e, n);
+        v.push_back(c);
+        string text = to_string(c);
+        cipherText += text;
+    }
+    cout<<"Cipher Text "<<cipherText<<endl;
+    string decryptedText = "";
+    for (int i = 0; i < v.size(); i++) {
+        int m = ModArth(v[i], d, n);
+        char append = (char) m;
+        decryptedText += append;
+    }
+    cout<<"Decrypted text "<<decryptedText<<endl;
 
     return 0;
 }
