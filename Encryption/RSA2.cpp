@@ -55,16 +55,13 @@ int main(int argc, char const *argv[])
 
     vector<long long int> v;
 
-    p = 71;
-    q = 211;
+    p = 7907;
+    q = 7919;
     n = p * q;
     phi = (p - 1) * (q - 1);
     e = generate_e(phi);
     d = generate_d(e, phi);
-    // int c = ModArth(msg, e, n);
-    // int m = ModArth(c, d, n);
-
-    string s = "My name is Ahmad";
+    string s = "My name is Zuhaib";
     string cipherText = "";
     for (int i = 0; i < s.size(); i++) {
         char m = s[i];
@@ -73,6 +70,8 @@ int main(int argc, char const *argv[])
         string text = to_string(c);
         cipherText += text;
     }
+    srand(time(NULL));
+    random_shuffle(cipherText.begin(), cipherText.end());
     cout<<"Cipher Text "<<cipherText<<endl;
     string decryptedText = "";
     for (int i = 0; i < v.size(); i++) {
